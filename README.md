@@ -1,0 +1,1 @@
+Assignment solution scaffold with FastAPI + PostgreSQL, Kubernetes manifests, Ingress, HPA, ConfigMap, Secret and PVC.

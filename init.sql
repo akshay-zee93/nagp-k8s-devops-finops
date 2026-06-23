@@ -1,0 +1,1 @@
+create table employees(id serial primary key,name varchar(100)); insert into employees(name) values ('Akshay'),('John'),('Jane'),('Mike'),('Sara');
