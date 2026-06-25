@@ -4,8 +4,7 @@
 
 - Code repository: https://github.com/akshay-zee93/nagp-k8s-devops-finops
 - Docker Hub image: https://hub.docker.com/r/akshaynagarro01/fastapi-k8s
-- Service API endpoint: http://<your-ingress-host>/records
-- Demo video: Add your screen recording link here (Loom, Google Drive, or YouTube)
+- Service API endpoint: http://api.example.com/records
 
 ## Requirement Understanding
 
@@ -67,7 +66,7 @@ kubectl apply -f ingress.yaml
 Once ingress is available, retrieve records with:
 
 ```bash
-curl http://<your-ingress-host>/records
+curl http://api.example.com/records
 ```
 
 For local verification, use port-forwarding:
@@ -92,13 +91,3 @@ The solution is designed to reduce unnecessary cloud spend by:
 2. Using HPA to scale replicas only when workload increases.
 3. Running only one PostgreSQL replica with persistent storage instead of over-provisioning a larger database setup.
 4. Using rolling deployments to reduce downtime and avoid extra temporary replica overhead.
-
-## Demo recording checklist
-
-The screen recording should include:
-
-- A complete view of all deployed Kubernetes objects such as Deployments, Pods, Services, PVCs, and HPA.
-- An API call that retrieves records from PostgreSQL.
-- Deleting an API pod and showing that Kubernetes recreates it automatically.
-- Deleting the PostgreSQL pod and showing that it recovers while preserving existing data.
-- A brief walkthrough of the deployment strategy, persistence, self-healing behavior, and FinOps choices.
