@@ -1,29 +1,54 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata:{name: fastapi-service}
+metadata:
+  name: fastapi-service
+
 spec:
   replicas: 4
-  strategy:{type: RollingUpdate}
-  selector:{matchLabels:{app: fastapi}}
+  strategy:
+    type: RollingUpdate
+
+  selector:
+    matchLabels:
+      app: fastapi
+
   template:
-    metadata:{labels:{app: fastapi}}
+    metadata:
+      labels:
+        app: fastapi
+
     spec:
       containers:
-      - name: api
-        image: <dockerhub-user>/fastapi-k8s:latest
-        ports:[{containerPort:8000}]
-        envFrom:
-        - configMapRef:{name: api-config}
-        - secretRef:{name: db-secret}
-        resources:
-          requests:{cpu:'100m',memory:'128Mi'}
-          limits:{cpu:'500m',memory:'512Mi'}
+        - name: api
+          image: akshaynagarro01/fastapi-k8s:v1
+
+          ports:
+            - containerPort: 8000
+
+          envFrom:
+            - configMapRef:
+                name: api-config
+            - secretRef:
+                name: db-secret
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
 ---
 apiVersion: v1
 kind: Service
-metadata:{name: fastapi-service}
+metadata:
+  name: fastapi-service
+
 spec:
-  selector:{app: fastapi}
+  selector:
+    app: fastapi
+
   ports:
-  - port: 80
-    targetPort: 8000
+    - port: 80
+      targetPort: 8000
